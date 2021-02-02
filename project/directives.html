@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="style.css">
+
+<div class="border">
+    <h3> ng-if directive</h3>
+    <input type="checkbox" ng-model="ngIfShowOrNot"/>
+    <div ng-if="ngIfShowOrNot">show this tag</div>
+</div>
+<div class="border">
+    <h3> ng-show directive</h3>
+    <input type="checkbox" ng-model="ngModelShowOrNot"/>
+    <div ng-show="ngModelShowOrNot">show this tag</div>
+</div>
+<div class="border">
+    <h3>ng-repeat</h3>
+    <ul>
+        <li ng-repeat="item in user.arr">{{item}}</li>
+    </ul>
+</div>
+<div class="border">
+    <h3>ng-class </h3>
+    <p ng-class="{'color-class': true,'background-class': true }">Some Text</p>
+    <p ng-class="{'color-class': true, 'background-class': false}">Some Text</p>
+</div>
+<div class="border">
+    <h3>ng-style</h3>
+    <span
+            ng-style="{'font-size':'20px','color': 'red'}">Some Text
+    </span>
+</div>
+<div>
+    <button ng-click="clickFunc()">click</button>
+    {{const}}
+</div>
+
+
