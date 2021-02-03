@@ -1,0 +1,18 @@
+<h3>scope</h3>
+<div class="border">
+    <p> controllers scope    Scope=false</p>
+    <input type='text' ng-model='name'>
+    <div controllers-scope></div>
+</div>
+<div class="border">
+    <p> inheritance scope    Scope=true</p>
+    <div>controllers scope: {{name}}</div>
+
+    <div inheritance-scope></div>
+</div>
+<div class="border">
+    <p>isolated scope    Scope={}</p>
+    <div isolated-scope></div>
+</div>
+
+

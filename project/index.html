@@ -12,23 +12,16 @@
     <a href="#!/">home</a>
     <a href="#!/directives">directives</a>
     <a href="#!/about">about</a>
+    <a href="#!/scope">scope</a>
     <ng-view></ng-view>
 
-    <div class="border">
-        <h3>directives</h3>
-        <div my-directive></div>
-        <div second-directive mes="second directive with link function and attrs"></div>
-    </div>
-    <div class="border">
-        <h3>ng-model</h3>
-        <input type="text" ng-model="inpValue" ng-change="inpChangeFunc()">
-        <div>input value: {{inpValue}}</div>
+
         <!--<div>ng-change function value: {{}}</div>-->
-        <form name="myForm">
+       <!-- <form name="myForm">
             <input type="text" name="inpRequire" ng-required="true">
             <span ng-if="myForm.inpRequire.$valid">valid or not</span>
-        </form>
+        </form>-->
 
-    </div>
+
 </body>
 </html>
