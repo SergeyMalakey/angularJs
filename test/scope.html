@@ -1,0 +1,28 @@
+<h3>scope</h3>
+<div class="border">
+    <p class="chapter">controller scope</p>
+    {{name}}
+    {{surname}}
+    {{age}}
+    {{id}}
+</div>
+<div class="border">
+    <p class="chapter"> directive default scope (default scope=false)</p>
+    <input type='text' ng-model='name'>
+    <div controllers-scope></div>
+</div>
+<div class="border">
+    <p class="chapter"> inheritance scope (scope=true)</p>
+    <div>controllers scope: {{name}}</div>
+    <div inheritance-scope></div>
+</div>
+<div class="border">
+    <p class="chapter">isolated scope (scope={})</p>
+    <div isolated-scope
+         name="name"
+         surname="{{surname}}"
+         func="func"
+    ></div>
+</div>
+
+
