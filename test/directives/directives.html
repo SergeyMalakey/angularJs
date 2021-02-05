@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../style.css">
 
 <div class="border">
     <h3> ng-if directive</h3>
@@ -50,7 +50,7 @@
 <div class="border">
     <h2>directives</h2>
     <div my-directive></div>
-    <div second-directive mes="second directive with link function and attrs"></div>
+
 </div>
                                                                <!-- // 11.1 Directives-->
 <div class="border">
@@ -63,6 +63,7 @@
     <input type="text" ng-change="inpChangeFunc()" ng-model="inpValue" t>
     <div>{{counter}}</div>
 </div>
+
 <div class="border">
     <h3>ng-require</h3>
     <form name="form">
@@ -71,11 +72,13 @@
         <div> is this form valid: {{form.input.$valid}}</div>
     </form>
 </div>
+
 <div class="border">
     <h3>ng-disabled</h3>
     <input type="checkbox" ng-model="disable">
     <input ng-disabled="disable"></input>
 </div>
+
 <div class="border">
     <h3>ng-value</h3>
     <label ng-repeat="name in names" for="{{name}}">
@@ -88,6 +91,7 @@
     </label>
     <div>You chose {{my.favorite}}</div>
 </div>
+
 <div class="border">
     <h3>ng-options</h3>
     <select ng-model="optionValue" ng-options="name for name in names"></select>

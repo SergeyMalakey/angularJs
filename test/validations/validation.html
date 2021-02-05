@@ -1,0 +1,36 @@
+<div class="border">
+    {{val}}
+    <div>validations</div>
+     <form name="formValid" novalidate>
+         <input name="inputValid"  type="text" ng-model="inputsInfo.modelValid" placeholder="Валидация по длине" ng-required="true" ng-maxlength="10" minlength="3" >
+             <span ng-if="formValid.inputValid.$error.required" class="warning-color">поле должно быть заполнено </span>
+             <span ng-if="formValid.inputValid.$error.maxlength" class="warning-color" >максимальная длина 10 </span>
+             <span ng-if="formValid.inputValid.$error.minlength" class="warning-color" >минимальная длина 3 </span>
+             <span ng-if="!formValid.inputValid.$error.minlength &&
+             !formValid.inputValid.$error.maxlength &&
+             !formValid.inputValid.$error.required" class="ok-color">valid длина от 3 до 10 </span>
+             </br>
+         <input type="text" name="mail" ng-model="inputsInfo.mail" ng-pattern="wordPattern" ng-required="true" placeholder="введите почту">
+             <span>cat@google.com</span>
+             <span ng-if="formValid.mail.$error.required" class="warning-color">поле должно быть заполнено</span>
+             <span ng-if="formValid.mail.$error.pattern" class="warning-color">invalid email</span>
+             <span ng-if="!formValid.mail.$error.pattern && !formValid.mail.$error.required" class="ok-color">email correct</span>
+             </br>
+         <input type="text" name="number" ng-model="inputsInfo.number" ng-pattern="numberPattern" placeholder="price 9999.99" required="true">
+             <span ng-if="formValid.number.$error.required" class="warning-color">поле должно быть заполнено</span>
+             <span ng-if="formValid.number.$error.pattern" class="warning-color">invalid number</span>
+             <span ng-if="!formValid.number.$error.pattern && !formValid.number.$error.required" class="ok-color">number is valid</span>
+             </br>
+         <input type="text" name="tdp" ng-model="inputsInfo.tdp">
+             <span ng-if=" formValid.tdp.$touched">The field has been touched; </span>
+             <span ng-if=" formValid.tdp.$dirty">The field has been modified; </span>
+             <span ng-if=" formValid.tdp.$pristine">The field has not been modified yet; </span>
+             </br>
+         <input type="text" placeholder="длина 3-10,'cat'" name="validat" ng-model="inputsIf" length-pass>
+         <span ng-if="formValid.validat.$error.lengthPass">длина должна быть от 3 до 10; </span>
+         <span ng-if="formValid.validat.$error.customValidatorName">строчка не содержит "cat" ;</span>
+            </br>
+         <button ng-click="reset()">reset</button>
+
+     </form>
+</div>
