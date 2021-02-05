@@ -1,4 +1,18 @@
 (function () {
+
+    window.onpopstate=function(event){
+        let arr = document.querySelectorAll("a")
+        Array.from(arr).map((item)=>{
+            if(location.href===item.href){
+                item.setAttribute("class", "current-url")
+            }
+            else {
+                item.removeAttribute("class", "current-url")
+            }
+        })
+        console.log(location.href)
+    }
+
     var app = angular.module('app', ['ngRoute']);
     app.config(function ($routeProvider) {
         $routeProvider
@@ -14,9 +28,6 @@
                 templateUrl: "validations/validation.html",
                 controller: "validationCtrl"
             })
-            .when("/about", {
-                template: "<h1>about person</h1>"
-            })
             .when("/scope", {
                 templateUrl: "scope/scope.html",
                 controller: "scopeCtrl"
@@ -29,6 +40,7 @@
                 template: "<h1>error</h1>"
             })
     });
+
     app.controller("homePageCtrl", function ($scope, myConst) {
         /*console.log("homePageController");*/
         $scope.user = {
