@@ -1,21 +1,12 @@
 (function (){
     var app = angular.module('app');
     app.controller("validationCtrl",function ($scope){
-        /* $scope.modelValid ="";
-         $scope.tdp=""
-         $scope.mailValid="";*/
-        /* $scope.numberVal= "9999.99";*/
         $scope.wordPattern = "^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$";
         $scope.numberPattern = "^[0-9]{4}\.[0-9]{2}$";
         $scope.emtyObj = {};
-
         $scope.reset = function() {
-            console.log($scope.inputsInfo);
-            $scope.inputsInfo = angular.copy($scope.emtyObj);
-            console.log($scope.inputsInfo);
-            console.log($scope.formValid)
+            $scope.inputsInfo = angular.copy($scope.emtyObj);   // copy empty obj to clean the validation form inputs
         };
-        /*$scope.reset();*/
     })
     app.directive('lengthPass', function () {
         var isValid = function(s) {

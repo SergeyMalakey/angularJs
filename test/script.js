@@ -1,5 +1,5 @@
 (function () {
-
+                    // function to style the selected link
     window.onpopstate=function(event){
         let arr = document.querySelectorAll("a")
         Array.from(arr).map((item)=>{
@@ -42,7 +42,6 @@
     });
 
     app.controller("homePageCtrl", function ($scope, myConst) {
-        /*console.log("homePageController");*/
         $scope.user = {
             name: "User1",
             email: "Email1",
@@ -73,21 +72,17 @@
             {name:'yellow', shade:'light', notAnOption: false}
         ];
         $scope.validation = "";
+        $scope.obj={
+            'key1':"value1",
+            'key2':"value2",
+            'key3':"value3"
+        };
     });
-
-                                                                        //custom directives
+                    //custom directives
     app.directive("myDirective", function () {
         return {
             template: '<p>{{user.name}} my directive with attached controllers scope<p/>',
             restrict: 'AE',
         }
     })
-
-
-
-
-
-
-
-
 })()

@@ -5,11 +5,13 @@
     <div>dfdfdffd</div>
     <div ng-if-end>dfdfdffd</div>
 </div>
+
 <div class="border">
     <h3> ng-show directive</h3>
     <input type="checkbox" ng-model="ngModelShowOrNot"/>
     <div ng-show="ngModelShowOrNot">show this tag</div>
 </div>
+
 <div class="border">
     <h3>ng-repeat</h3>
     <ul>
@@ -23,32 +25,32 @@
         </li>
         <div ng-repeat-end>---</div>
     </ul>
-
 </div>
+
 <div class="border">
     <h3>ng-class </h3>
     <p ng-class="{'color-class': true,'background-class': true }">Some Text</p>
     <p ng-class="{'color-class': true, 'background-class': false}">Some Text</p>
 </div>
+
 <div class="border">
     <h3>ng-style</h3>
-    <span
-            ng-style="{'font-size':'20px','color': 'red'}">Some Text
+    <span ng-style="{'font-size':'20px','color': 'red'}">Some Text
     </span>
 </div>
-<div>
+
+<div class="border">
+    <h3>error mes in console</h3>
     <button ng-click="clickFunc()">click</button>
-    {{const}}
+    <span>Text from my constant: {{const}}</span>
 </div>
 <br/>
 <br/>
 <br/>
-
-                                                               <!--custom directives-->
+                    <!--custom directives-->
 <div class="border">
     <h2>directives</h2>
     <div my-directive></div>
-
 </div>
                                                                <!-- // 11.1 Directives-->
 <div class="border">
@@ -56,6 +58,7 @@
     <input type="text" ng-model="inpValue">
     <div>input value: {{inpValue}}</div>
 </div>
+
 <div class="border">
     <h3>ng-change</h3>
     <input type="text" ng-change="inpChangeFunc()" ng-model="inpValue" t>
@@ -63,7 +66,7 @@
 </div>
 
 <div class="border">
-    <h3>ng-require</h3>
+    <h3>ng-required</h3>
     <form name="form">
         <input name="input" type="text" ng-model="model" ng-required="true" >
         <div ng-if="form.input.$error.required" class="warning-color">поле должно быть заполнено </div>
@@ -79,22 +82,33 @@
 
 <div class="border">
     <h3>ng-value</h3>
-    <label ng-repeat="name in names" for="{{name}}">
+    <label ng-repeat="name in names">
         {{name}}
         <input type="radio"
                ng-model="my.favorite"
                ng-value="name"
-               id="{{name}}"
-               name="favorite">
+               >
     </label>
-    <div>You chose {{my.favorite}}</div>
+    <div>You chose: {{my.favorite}}</div>
 </div>
 
 <div class="border">
     <h3>ng-options</h3>
+
     <select ng-model="optionValue" ng-options="name for name in names"></select>
     <span>{{optionValue || "here will be your choice"}}</span>
-    <select ng-options="color.name as color.shade for color in colors"></select>
+    <span>. Iterate the arr with strings</span>
+    <br>
+
+    <select ng-model="secondOpt" ng-options="color.name for color in colors">
+        <option value="">choose a color</option>
+    </select>
+    <span>iterate the arr with objects</span>
+    <br>
+
+    <select ng-model="thirdOpt" ng-options='key as value for (key, value) in obj'></select>
+    <span> iterate the object. Key in option, value in variable ng-model. value = {{thirdOpt||"key not selected"}}</span>
+
 </div>
 <br/>
 <br/>
