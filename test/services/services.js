@@ -1,8 +1,26 @@
 (function () {
     var app = angular.module('app')
-    app.controller("servicesCtrl", function ($scope, myConst, $http, $resource) {
+
+    app.factory("Resfact", [
+        "$resource", function ($resource) {
+            return $resource("https://swapi.dev/api/people/:userNumber/", { // URL template, second arg - default parameters
+                    userNumber: 2
+                } // third arg - action. object to confirm our request.
+                // ,{update:{method:"put",params:{userNumber:@id}, isArray:true }} - create own method
+                //  Restfact.update(params,successCb,errorCb)
+            )
+        }
+    ])
+
+    app.controller("servicesCtrl", function ($scope, myConst, $http, Resfact) {
         $scope.const = myConst;
+
+        // $resource block
+
+        $scope.user = Resfact.get() // params like {userNumber:3} will change request. empty brackets - default request
+
         // $http block
+
         $scope.httpObj = {
             configRequest: {
                 url: "https://swapi.dev/api/people/1/",
@@ -19,27 +37,8 @@
                     $scope.httpObj.status = error.status;
                 }
             );
-
-        // $resource block
-        $scope.resourseObj = {
-            url: "https://swapi.dev/api/people/:userNumber/",
-            userNumber: 2,
         }
-
-        /* var Resource = $resource("https://swapi.dev/api/people/:userNumber/",{userNumber:"@userNumber"},{ 'get':    {method:'GET'}});
-         /!*$scope.people = Resource.query({userNumber:$scope.resourseObj.id},function (response){
-             $scope.resourseObj.data = response
-         })*!/
-         $scope.people = Resource.get({userNumber:2})*/
-
-        /*var User = $resource("https://swapi.dev/api/people/:userNumber", {userNumber: 2});
-        User.get({userNumber: 2}).$q.then(function (user) {
-            /!*user.$save()*!/
-            console.log("resource: " + user)
-            debugger;
-        })*/
-
-    })
+    )
 
     app.directive("secondDirective", ["myService", "servWithService", "myVal", "myConst", function (myService, servWithService, myVal, myConst) {
         return function ($scope, element, attr) {

@@ -7,6 +7,12 @@
         $scope.reset = function () {
             $scope.inputsInfo = angular.copy($scope.emtyObj);   // copy empty obj to clean the validation form inputs
         };
+        // emit
+        $scope.handleClick = function (mes) {
+            $scope.handleClick = function (msg) {
+                $scope.$emit('transfer', { message: msg });
+            };
+        }
     })
     app.directive('lengthPass', function () {
         /*var isValid = function (s) {
