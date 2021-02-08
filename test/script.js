@@ -10,9 +10,8 @@
             }
         })
     }
-       //
+       // ,'ngMockE2E'
     var app = angular.module('app', ['ngRoute', 'ngResource']);
-
    /* app.run(function ($httpBackend) { //this service give an opportunity to inject backend
         var books = [
             {

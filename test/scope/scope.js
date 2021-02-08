@@ -8,6 +8,7 @@
         $scope.func = function () {
             console.log("transferred function")
         };
+
     })
     app.directive("controllersScope", function () {
         return {

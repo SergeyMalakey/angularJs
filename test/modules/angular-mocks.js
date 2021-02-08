@@ -61,7 +61,7 @@ function routeToRegExp(path, opts) {
  * @name angular.mock
  * @description
  *
- * Namespace from 'angular-mocks.js' which contains testing related code.
+ * Namespace from 'angular-mock.js' which contains testing related code.
  *
  */
 angular.mock = {};
@@ -2617,7 +2617,7 @@ angular.mock.$ComponentControllerProvider = ['$compileProvider',
 /**
  * @ngdoc module
  * @name ngMock
- * @packageName angular-mocks
+ * @packageName angular-mock
  * @description
  *
  * The `ngMock` module provides support to inject and mock AngularJS services into unit tests.
@@ -2628,30 +2628,30 @@ angular.mock.$ComponentControllerProvider = ['$compileProvider',
  *
  *  First, download the file:
  *  * [Google CDN](https://developers.google.com/speed/libraries/devguide#angularjs) e.g.
- *    `"//ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-mocks.js"`
- *  * [NPM](https://www.npmjs.com/) e.g. `npm install angular-mocks@X.Y.Z`
- *  * [Yarn](https://yarnpkg.com) e.g. `yarn add angular-mocks@X.Y.Z`
- *  * [Bower](http://bower.io) e.g. `bower install angular-mocks#X.Y.Z`
+ *    `"//ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-mock.js"`
+ *  * [NPM](https://www.npmjs.com/) e.g. `npm install angular-mock@X.Y.Z`
+ *  * [Yarn](https://yarnpkg.com) e.g. `yarn add angular-mock@X.Y.Z`
+ *  * [Bower](http://bower.io) e.g. `bower install angular-mock#X.Y.Z`
  *  * [code.angularjs.org](https://code.angularjs.org/) (discouraged for production use)  e.g.
- *    `"//code.angularjs.org/X.Y.Z/angular-mocks.js"`
+ *    `"//code.angularjs.org/X.Y.Z/angular-mock.js"`
  *
  * where X.Y.Z is the AngularJS version you are running.
  *
- * Then, configure your test runner to load `angular-mocks.js` after `angular.js`.
+ * Then, configure your test runner to load `angular-mock.js` after `angular.js`.
  * This example uses <a href="http://karma-runner.github.io/">Karma</a>:
  *
  * ```
  * config.set({
  *   files: [
  *     'build/angular.js', // and other module files you need
- *     'build/angular-mocks.js',
+ *     'build/angular-mock.js',
  *     '<path/to/application/files>',
  *     '<path/to/spec/files>'
  *   ]
  * });
  * ```
  *
- * Including the `angular-mocks.js` file automatically adds the `ngMock` module, so your tests
+ * Including the `angular-mock.js` file automatically adds the `ngMock` module, so your tests
  *  are ready to go!
  */
 angular.module('ngMock', ['ng']).provider({
@@ -2675,10 +2675,10 @@ angular.module('ngMock', ['ng']).provider({
  * @ngdoc module
  * @name ngMockE2E
  * @module ngMockE2E
- * @packageName angular-mocks
+ * @packageName angular-mock
  * @description
  *
- * The `ngMockE2E` is an AngularJS module which contains mocks suitable for end-to-end testing.
+ * The `ngMockE2E` is an AngularJS module which contains mock suitable for end-to-end testing.
  * Currently there is only one mock present in this module -
  * the {@link ngMockE2E.$httpBackend e2e $httpBackend} mock.
  */
@@ -2739,7 +2739,7 @@ angular.module('ngMockE2E', ['ng']).config(['$provide', function($provide) {
  * Afterwards, bootstrap your app with this new module.
  *
  * @example
- * <example name="httpbackend-e2e-testing" module="myAppE2E" deps="angular-mocks.js">
+ * <example name="httpbackend-e2e-testing" module="myAppE2E" deps="angular-mock.js">
  * <file name="app.js">
  *   var myApp = angular.module('myApp', []);
  *
