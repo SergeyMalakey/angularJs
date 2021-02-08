@@ -1,24 +1,30 @@
-.color-class{
+.color-class {
     color: green;
 }
-.background-class{
+
+.background-class {
     background-color: gold;
 }
-.border{
+
+.border {
     border: 1px solid black;
     padding: 5px;
 }
-.warning-color{
+
+.warning-color {
     color: red;
 }
-.ok-color{
+
+.ok-color {
     color: green;
 }
-.chapter{
+
+.chapter {
     text-align: center;
     font-weight: bold;
 }
-.current-url{
+
+.current-url {
     text-decoration: none;
     color: black;
     font-weight: bold;

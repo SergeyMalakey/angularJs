@@ -8,5 +8,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="angular-resource" level="application" />
+    <orderEntry type="library" name="angular.js" level="application" />
+    <orderEntry type="library" name="angular-mocks" level="application" />
   </component>
 </module>

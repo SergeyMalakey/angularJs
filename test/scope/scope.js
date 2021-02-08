@@ -1,4 +1,4 @@
-(function (){
+(function () {
     var app = angular.module('app')
     app.controller("scopeCtrl", function ($scope) {
         $scope.name = "Ivan";
@@ -14,18 +14,18 @@
             restrict: "AE",
             template: "<div>{{name}}</div>",
         }
-    })
+    });
     app.directive("inheritanceScope", function () {
         return {
             scope: true,
             restrict: "AE",
             template: "<div><input type='text' ng-model='name'><div>internal scope from template: {{name}}</div></div>",
         }
-    })
+    });
     app.directive("isolatedScope", function () {
         return {
             link: function (scope, el, attr) {
-                /*scope.func()*/           //сработвет при переходе не страницу
+                /*scope.func()*/           //this func will work when switching to the page
             },
             scope: {
                 name: "=",
@@ -42,6 +42,6 @@
                 '        <input type="text" ng-model="surname">\n' +
                 '    </div><div>"$" method</div><button ng-click="func()">func from controller</button> '
         }
-    })
+    });
 })()
 

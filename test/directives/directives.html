@@ -1,9 +1,10 @@
+<h2>directives chapter 1</h2>
 <div class="border">
     <h3> ng-if directive</h3>
     <input type="checkbox" ng-model="ngIfShowOrNot"/>
-    <div ng-if-start="ngIfShowOrNot" leave>show this tag</div>
-    <div>dfdfdffd</div>
-    <div ng-if-end>dfdfdffd</div>
+    <div ng-if-start="ngIfShowOrNot">ng-if-start</div>
+    <div>some teg</div>
+    <div ng-if-end>ng-if-end</div>
 </div>
 
 <div class="border">
@@ -17,13 +18,13 @@
     <ul>
         <li ng-repeat-start="item in user.arr">
             element: {{item}}, index: {{$index}}
-            {{$even && " even"||""}}
-            {{$odd && " odd"||""}}
-            {{$last && " Last"||""}}
-            {{$first && " First"||""}}
-            {{$middle && " Middle"||""}}
+            {{$even && " even" || ""}}
+            {{$odd && " odd" || ""}}
+            {{$last && " Last" || ""}}
+            {{$first && " First" || ""}}
+            {{$middle && " Middle" || ""}}
         </li>
-        <div ng-repeat-end>---</div>
+        <div ng-repeat-end>"also repeated teg"</div>
     </ul>
 </div>
 
@@ -42,17 +43,15 @@
 <div class="border">
     <h3>error mes in console</h3>
     <button ng-click="clickFunc()">click</button>
-    <span>Text from my constant: {{const}}</span>
 </div>
-<br/>
-<br/>
-<br/>
-                    <!--custom directives-->
+
+<h2>directives chapter 2</h2>
+<!--custom directives-->
 <div class="border">
-    <h2>directives</h2>
+    <h3>custom directive</h3>
     <div my-directive></div>
 </div>
-                                                               <!-- // 11.1 Directives-->
+<!-- // 11.1 Directives-->
 <div class="border">
     <h3>ng-model</h3>
     <input type="text" ng-model="inpValue">
@@ -61,23 +60,23 @@
 
 <div class="border">
     <h3>ng-change</h3>
-    <input type="text" ng-change="inpChangeFunc()" ng-model="inpValue" t>
+    <input type="text" ng-change="inpChangeFunc()" ng-model="inpValue">
     <div>{{counter}}</div>
 </div>
 
 <div class="border">
     <h3>ng-required</h3>
     <form name="form">
-        <input name="input" type="text" ng-model="model" ng-required="true" >
-        <div ng-if="form.input.$error.required" class="warning-color">поле должно быть заполнено </div>
-        <div> is this form valid: {{form.input.$valid}}</div>
+        <input name="input" type="text" ng-model="model" ng-required="true">
+        <div ng-if="form.input.$error.required" class="warning-color">this field have to be filled</div>
+        <div> is this form valid: {{ form.input.$valid}}</div>
     </form>
 </div>
 
 <div class="border">
     <h3>ng-disabled</h3>
     <input type="checkbox" ng-model="disable">
-    <input ng-disabled="disable"></input>
+    <input ng-disabled="disable"/>
 </div>
 
 <div class="border">
@@ -87,7 +86,8 @@
         <input type="radio"
                ng-model="my.favorite"
                ng-value="name"
-               >
+        >
+        <!-- In ng-model have to sigh some value to chose only one field-->
     </label>
     <div>You chose: {{my.favorite}}</div>
 </div>
@@ -106,13 +106,10 @@
     <span>iterate the arr with objects</span>
     <br>
 
-    <select ng-model="thirdOpt" ng-options='key as value for (key, value) in obj'></select>
-    <span> iterate the object. Key in option, value in variable ng-model. value = {{thirdOpt||"key not selected"}}</span>
-
+    <select ng-model="thirdOpt" ng-options='value as key for (key, value) in obj'></select>
+    <span> iterate the object. Key in option, value in variable ng-model. value = {{thirdOpt || "key not selected"}}</span>
 </div>
-<br/>
-<br/>
-<br/>
+
 
 
 
