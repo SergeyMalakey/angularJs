@@ -26,24 +26,6 @@
     app.controller("mockCtrl", function ($scope, $http) {
 
         $scope.functionGet = function () {
-            $scope.httpObj = {
-                configRequest: {
-                    url: "http://localhost:3001/persons", // https://swapi.dev/api/people/1/
-                    method: "get"
-                },
-            }
-            $http($scope.httpObj.configRequest)
-                .then(function (response) {
-                        $scope.httpObj.res = response.data;
-                        $scope.httpObj.status = response.status;
-                    },
-                    function (error) {
-                        $scope.httpObj.err = error;
-                        $scope.httpObj.status = error.status;
-                    }
-                );
-
-
             $http({
                 url: "http://localhost:3001/persons", // https://swapi.dev/api/people/1/
                 method: "get"
@@ -52,8 +34,6 @@
                         $scope.persons = response;
                     },
                     function (error) {
-
-                        $scope.persons = response;
 
                     }
                 );
