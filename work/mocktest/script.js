@@ -1,19 +1,17 @@
 (function () {
-    var app = angular.module('app', ["ngRoute"])
+    var app = angular.module('app', ["ngRoute"]) //
     app.config(function ($routeProvider){
         $routeProvider
             .when("/", {
                 templateUrl: "home/home.html",
                 controller: "homeCtrl"
-
             })
             .when("/page", {
-                templateUrl: "page/page.html",
-                /*controller: "pageCtrl"*/
+                templateUrl: "page/page.html"
             })
     })
-
-    /*app.run(function ($httpBackend) { //this service give an opportunity to inject backend
+    var myAppDev = angular.module('myAppE2E', ['app', 'ngMockE2E']);
+    myAppDev.run(function ($httpBackend) { //this service give an opportunity to inject backend
         var persons = [
             {
                 person: 'luke'
@@ -33,6 +31,7 @@
             console.log('data', data);
             return [201, persons];
         })
-    });*/
+    });
+    angular.bootstrap(document.body, ['myAppE2E'])
 
 })()

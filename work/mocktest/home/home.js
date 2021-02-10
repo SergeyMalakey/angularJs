@@ -1,20 +1,18 @@
 (function (){
-    var app = angular.module('app');
+    let app = angular.module('app');
 
     app.controller("homeCtrl", function ($scope, $http) {
         $scope.functionGet = function () {
             $scope.httpObj = {}
             $http({
-                url: "https://swapi.dev/api/people/1/", //       http://localhost:3001/persons
+                url: "http://localhost:3001/persons", //       https://swapi.dev/api/people/1/
                 method: "get"
             })
                 .then(function (response) {
                         $scope.persons = response;
                     },
                     function (error) {
-
-                        $scope.persons = response;
-
+                        $scope.persons = error;
                     }
                 );
         }
@@ -31,8 +29,5 @@
             $scope.newName = ""
         }
     })
-
-
-
 
 })()
