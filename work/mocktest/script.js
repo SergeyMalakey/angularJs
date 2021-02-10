@@ -1,7 +1,19 @@
 (function () {
-    var app = angular.module('app', [`ngMockE2E`])
+    var app = angular.module('app', ["ngRoute"])
+    app.config(function ($routeProvider){
+        $routeProvider
+            .when("/", {
+                templateUrl: "home/home.html",
+                controller: "homeCtrl"
 
-    app.run(function ($httpBackend) { //this service give an opportunity to inject backend
+            })
+            .when("/page", {
+                templateUrl: "page/page.html",
+                /*controller: "pageCtrl"*/
+            })
+    })
+
+    /*app.run(function ($httpBackend) { //this service give an opportunity to inject backend
         var persons = [
             {
                 person: 'luke'
@@ -21,34 +33,6 @@
             console.log('data', data);
             return [201, persons];
         })
-    });
+    });*/
 
-    app.controller("mockCtrl", function ($scope, $http) {
-
-        $scope.functionGet = function () {
-            $http({
-                url: "http://localhost:3001/persons", // https://swapi.dev/api/people/1/
-                method: "get"
-            })
-                .then(function (response) {
-                        $scope.persons = response;
-                    },
-                    function (error) {
-
-                    }
-                );
-        }
-        $scope.functionPost = function (newName) {
-            let name = {
-                name: newName
-            };
-            $http.post('http://localhost:3001/persons', name)
-                .then(function (result) {
-                    console.log(result)
-                    $scope.statusPostReq = result.status
-                })
-            $scope.functionGet()
-            $scope.newName = ""
-        }
-    })
 })()
