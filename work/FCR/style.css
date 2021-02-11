@@ -1,0 +1,17 @@
+.form-part{
+    display: flex;
+    flex-direction: column;
+}
+.form-part--sign{
+    text-align: center;
+    background-color: red;
+    color: white;
+}
+.form-part--inputs form{
+    display: flex;
+}
+.left--side{
+    width: 70%;
+    display:flex;
+    justify-content: space-between;
+}
