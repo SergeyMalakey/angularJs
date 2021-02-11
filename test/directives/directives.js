@@ -5,6 +5,11 @@
             name: "User1",
             arr: [1, 2, 3, 4, 5, 6, 7],
         };
+        $scope.ngIfShowOrNot = true;
+        $scope.inputNgIf = ""
+        $scope.scopeObj={
+            inputNgIf: ""
+        }
         $scope.counter = 0;
         $scope.inpChangeFunc = function () {
             $scope.counter++;

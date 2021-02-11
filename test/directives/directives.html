@@ -1,10 +1,26 @@
 <h2>directives chapter 1</h2>
 <div class="border">
     <h3> ng-if directive</h3>
+    <div>text inputNgIf: {{inputNgIf}}</div>
+    <div>text scopeObj.inputNgIf{{scObg.inputNgIf}}</div>
+    <input type="text" ng-model="inputNgIf" placeholder="inputNgIf">
+    <span>ng model to value</span>
+    <br>
+    <input type="text" ng-model="scopeObj.inputNgIf" placeholder="scopeObj.inputNgIf">
+    <span>ng-model to obj.value</span>
+    <br>
+
     <input type="checkbox" ng-model="ngIfShowOrNot"/>
-    <div ng-if-start="ngIfShowOrNot">ng-if-start</div>
-    <div>some teg</div>
-    <div ng-if-end>ng-if-end</div>
+
+    <div ng-if-start="ngIfShowOrNot" >ng-if start</div>
+    <input type="text" ng-model="inputNgIf" placeholder="inputNgIf">
+    <span>inheritance scope</span>
+    <br>
+    <input type="text" ng-model="scopeObj.inputNgIf" placeholder="scopeObj.inputNgIf">
+    <span>controllers scope</span>
+
+        <div>some teg</div>
+    <div ng-if-end>ng-if end</div>
 </div>
 
 <div class="border">
@@ -69,7 +85,7 @@
     <form name="form">
         <input name="input" type="text" ng-model="model" ng-required="true">
         <div ng-if="form.input.$error.required" class="warning-color">this field have to be filled</div>
-        <div> is this form valid: {{ form.input.$valid}}</div>
+        <div> is this form valid: {{ form.$valid}}</div>
     </form>
 </div>
 
