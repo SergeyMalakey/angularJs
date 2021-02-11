@@ -1,0 +1,92 @@
+<link rel="stylesheet" href="style.css">
+
+<div class="border">
+    <h3> ng-if directive</h3>
+    <input type="checkbox" ng-model="ngIfShowOrNot"/>
+    <div ng-if="ngIfShowOrNot">show this tag</div>
+</div>
+<div class="border">
+    <h3> ng-show directive</h3>
+    <input type="checkbox" ng-model="ngModelShowOrNot"/>
+    <div ng-show="ngModelShowOrNot">show this tag</div>
+</div>
+<div class="border">
+    <h3>ng-repeat</h3>
+    <ul>
+        <li ng-repeat="item in user.arr">{{item}}</li>
+    </ul>
+</div>
+<div class="border">
+    <h3>ng-class </h3>
+    <p ng-class="{'color-class': true,'background-class': true }">Some Text</p>
+    <p ng-class="{'color-class': true, 'background-class': false}">Some Text</p>
+</div>
+<div class="border">
+    <h3>ng-style</h3>
+    <span
+            ng-style="{'font-size':'20px','color': 'red'}">Some Text
+    </span>
+</div>
+<div>
+    <button ng-click="clickFunc()">click</button>
+    {{const}}
+</div>
+
+<div class="border">
+    <h3>directives</h3>
+    <div my-directive></div>
+    <div second-directive mes="second directive with link function and attrs"></div>
+</div>
+<div class="border">
+    <h3>ng-model</h3>
+    <input type="text" ng-model="inpValue">
+    <div>input value: {{inpValue}}</div>
+</div>
+<div class="border">
+    <h3>ng-change</h3>
+    <input type="text" ng-change="inpChangeFunc()" ng-model="inpValue" t>
+    <div>{{counter}}</div>
+</div>
+<div class="border">
+    <h3>ng-require</h3>
+    <form name="form">
+        <input name="input" type="text" ng-model="model" ng-required="true" >
+        <div ng-if="form.input.$error.required" class="warning-color">поле должно быть заполнено </div>
+        <div> is this form valid: {{form.input.$valid}}</div>
+    </form>
+</div>
+<div class="border">
+    <h3>ng-disabled</h3>
+    <input type="checkbox" ng-model="disable">
+    <input ng-disabled="disable"></input>
+</div>
+<div class="border">
+    <h3>ng-value</h3>
+  <!--  <input type="text" ng-value="value">-->
+
+    <label ng-repeat="name in names" for="{{name}}">
+        {{name}}
+        <input type="radio"
+               ng-model="my.favorite"
+               ng-value="name"
+               id="{{name}}"
+               name="favorite">
+
+    </label>
+    <div>You chose {{my.favorite}}</div>
+</div>
+<div class="border">
+    <div>validations</div>
+    <form name="formValid">
+        <input name="inputValid"  type="text" ng-model="modelValid" ng-required="true" ng-maxlength="10" minlength="3" >
+        <span ng-if="formValid.inputValid.$error.required" class="warning-color">поле должно быть заполнено </span>
+        <span ng-if="formValid.inputValid.$error.maxlength" class="warning-color" >максимальная длина 10 </span>
+        <span ng-if="formValid.inputValid.$error.minlength" class="warning-color" >минимальная длина 3 </span>
+        </br>
+        <input type="email" name="email" ng-pattern="wordPattern">
+        <span ng-if="formValid.email.$error.pattern">invalid email</span>
+
+    </form>
+</div>
+
+
