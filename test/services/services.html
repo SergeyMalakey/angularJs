@@ -2,16 +2,33 @@
 <div second-directive mes="second directive creates new teg span and add into it mes from attribute"></div>
 <div class="border">
     <h3>$http</h3>
-    <div>Status code:  {{httpObj.status}}</div>
-    <div>Response  :  {{httpObj.res}}</div>
-    <div>{{httpObj.err}}</div>
+    <button ng-click="getFunc()" >get</button>
+    <input type="text" ng-model="newName">
+    <button ng-click="postFunc()">post</button>
+    <div>Status code:  {{status}}</div>
+    <div>Response  :  {{res}}</div>
+    <div>{{err}}</div>
 </div>
 <div
 class="border">
     <h3>$resource</h3>
-    {{user}}
+    <button ng-click="changeEssFunc('planets')">planet</button>
+    <button ng-click="changeEssFunc('people')">people</button>
+    <br>
+    <input type="number" ng-model="id">
+    <p>{{essence}}</p>
+    <div>{{user}}</div>
 </div>
 <div class="border">
-    <h3>mock</h3>
+    <h3>$resource with mock</h3>
+    <div>
+        response: {{showInfo}}
+    </div>
+    <button ng-click="deleteFunc()">delete</button>
 </div>
+
+
+
+
+
 
