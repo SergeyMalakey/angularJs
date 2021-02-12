@@ -7,7 +7,7 @@
         $scope.tableObj = {
         }
         $scope.totalPrice =
-        $scope.imployees = [
+        $scope.employees = [
             {
                 name:"Employee1",
                 classification:"cli1",
@@ -47,34 +47,55 @@
         ];
         $scope.totalPerdiem = function (index){
             $scope.tableObj.totalPerDiem = 0
-            $scope.imployees.forEach(function (obj){
+            $scope.employees.forEach(function (obj){
                 $scope.tableObj.totalPerDiem += obj.perDiem || 0
             })
             $scope.totalCostOneEmployee(index)
         }
         $scope.totalPrice = function(){
             $scope.tableObj.totalPrice = 0
-            $scope.imployees.forEach(function (obj){
+            $scope.employees.forEach(function (obj){
                 $scope.tableObj.totalPrice += obj.totalCost || 0
             })
         }
         $scope.totalCostOneEmployee = function(index){
-            $scope.imployees[index].totalCost = ($scope.imployees[index].normalTime.hrs * $scope.imployees[index].normalTime.rate + $scope.imployees[index].doubleTime.hrs * $scope.imployees[index].doubleTime.rate + ($scope.imployees[index].perDiem || 0) || 0)
+            $scope.employees[index].totalCost = ($scope.employees[index].normalTime.hrs * $scope.employees[index].normalTime.rate + $scope.employees[index].doubleTime.hrs * $scope.employees[index].doubleTime.rate + ($scope.employees[index].perDiem || 0) || 0)
             $scope.totalPrice()
         }
+        $scope.totalAmountNormalTime = function (){
+            $scope.tableObj.normalTimeHrs = 0
+            $scope.employees.forEach(function (obj){
+                $scope.tableObj.normalTimeHrs += obj.normalTime.hrs
+            })
+        }
+        $scope.totalAmountDoubleTime = function (){
+            $scope.tableObj.doubleTimeHrs = 0
+            $scope.employees.forEach(function (obj){
+                $scope.tableObj.doubleTimeHrs += obj.doubleTime.hrs
+            })
+        }
+
         $scope.initialCompute = function (){
-            $scope.imployees.forEach((obg,index)=>{
+            $scope.employees.forEach((obg,index)=>{
                 $scope.totalCostOneEmployee(index)
             })
+            $scope.totalAmountNormalTime()
+            $scope.totalAmountDoubleTime()
+
             $scope.totalPrice()
         }
         $scope.initialCompute()
 
-       /* $scope.test = function (){
-            "dd".log
-        }*/
+
+
+
+
+
+        $scope.test = function (){
+            console.log($scope.employees);
+        }
         /*$scope.totalPrice = function (){
-            $scope.imployees.forEach(function (obj){
+            $scope.employee.forEach(function (obj){
                 $scope.tableObj.totalPerDiem += obj.perDiem || 0
             })
         }*/

@@ -89,28 +89,28 @@
                 <td>Rate</td>
                 <td>Amount</td>
             </tr>
-            <tr ng-repeat="employee in imployees">
+            <tr ng-repeat="employee in employees">
                 <td>{{employee.name}}</td>
                 <td>{{employee.classification}}</td>
-                <td><input type="number" ng-model="employee.normalTime.hrs" ng-click="totalCostOneEmployee($index)" min="0"></td>
+                <td><input type="number" ng-model="employee.normalTime.hrs" ng-click="totalCostOneEmployee($index) ; totalAmountNormalTime()" min="0"></td>
                 <td><input type="number" ng-model="employee.normalTime.rate" ng-click="totalCostOneEmployee($index)" min="0"></td>
                 <td>{{employee.normalTime.hrs * employee.normalTime.rate}}</td>
-                <td><input type="number" ng-model="employee.doubleTime.hrs" ng-click="totalCostOneEmployee($index)" min="0"></td>
+                <td><input type="number" ng-model="employee.doubleTime.hrs" ng-click="totalCostOneEmployee($index) ; totalAmountDoubleTime()" min="0"></td>
                 <td><input type="number" ng-model="employee.doubleTime.rate" ng-click="totalCostOneEmployee($index)" min="0"></td>
                 <td>{{employee.doubleTime.hrs * employee.doubleTime.rate}}</td>
-                <td><input type="number" ng-change="totalPerdiem($index)" ng-model="imployees[$index].perDiem" min="0"></td>
+                <td><input type="number" ng-change="totalPerdiem($index)" ng-model="employees[$index].perDiem" min="0"></td>
                 <td >{{employee.totalCost}}</td>
             </tr>
             <tr>
                 <td colspan="2">Totals:</td>
-                <td></td>
+                <td>{{tableObj.normalTimeHrs}}</td>
                 <td colspan="2"></td>
-                <td></td>
+                <td>{{tableObj.doubleTimeHrs}}</td>
                 <td colspan="2"></td>
                 <td>{{tableObj.totalPerDiem}}</td>
                 <td>{{tableObj.totalPrice}}</td>
             </tr>
-            <button ng-click="totalCostOneEmployee(2)">test</button>
+            <button ng-click="test()">test</button>
         </table>
     </div>
 </div>
