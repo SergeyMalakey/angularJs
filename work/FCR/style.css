@@ -1,3 +1,8 @@
+body{
+    font-size: 12px;
+    font-weight: bold;
+
+}
 .form-part{
     display: flex;
     flex-direction: column;
@@ -9,9 +14,89 @@
 }
 .form-part--inputs form{
     display: flex;
+    flex-direction: column;
 }
 .left--side{
-    width: 70%;
+    width: 60%;
     display:flex;
+    flex-direction: column;
     justify-content: space-between;
 }
+.label-input{
+    display:flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+.label-input input{
+    width: 75%;
+}
+.right--side{
+    width:37%;             /* // shrink*/
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.right--side .label-input input{
+    width: 60%;
+}
+.top-side-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+.bottom-part-wrapper{
+
+}
+.date-input{
+    padding: 5px;                    /* do not work*/
+}
+#customerWrapper{
+    position: relative;
+
+}
+#showList{
+    position: absolute;
+    right: 7px;
+    top: 13px;
+}
+#datepicker{
+    padding: 2px;
+}
+.label-input label:before,
+.date-input label:before{
+    content:"*";
+    color: red;
+}
+                                    /*       table                */
+table{
+    width: 100%;
+    font-weight: bold;
+}
+.table-sign{
+    background-color:red;
+    width:100%;
+    text-align: center;
+    color: white;
+}
+.table-head{
+    background-color: lightgrey;
+}
+.table-head td{
+
+    padding: 5px;
+    text-align: center;
+}
+td{
+    position: relative;
+}
+td input{
+    position: absolute;
+    display: block;
+    top:0;
+    left:0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    border: none;
+    box-sizing: border-box;
+}
+
