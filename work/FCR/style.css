@@ -20,6 +20,7 @@ body {
     text-align: center;
     background-color: red;
     color: white;
+    padding: 8px;
 }
 
 .form-part--inputs form {
@@ -87,18 +88,27 @@ body {
     color: red;
 }
 
-                                /*       table                */
-table {
+                                    /*table */
+.table {
     width: calc(100% - 25px);
+    border: 1px solid black;
 }
-
+table.table-bordered{
+    border:1px solid black;
+}
+table.table-bordered > thead > tr > th{
+    border:1px solid black;
+}
+table.table-bordered > tbody > tr > td{
+    border:1px solid black;
+}
 .table-sign {
     background-color: red;
     width: 100%;
     color: white;
 }
 
-.table-sign td {
+.table-sign th {
     text-align: center;
     font-weight: bold;
 }
@@ -110,6 +120,7 @@ table {
 .table-head th {
     padding: 5px;
     text-align: center;
+    vertical-align:middle;
 }
 
 td {
@@ -200,6 +211,7 @@ input::-webkit-inner-spin-button {
     border-top: 1px black solid;
     border-left: 1px black solid;
     border-right: 1px black solid;
+    padding: 8px;
 }
                                       /*  bottom-part*/
 

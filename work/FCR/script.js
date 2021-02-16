@@ -9,6 +9,11 @@
 
     app.controller("myCtrl", function ($scope,$http,ResourceMock) {
 
+        /*$http.get('http://localhost:3001/customers').then(function (res){
+            debugger;
+        })*/
+
+
         $scope.value = "";
         /*$scope.formObj = {};*/
 
@@ -26,7 +31,12 @@
             $scope.fcrForm.prepared = response[0].prepared;
             $scope.fcrForm.formObj = response[0].formPart
 
-            //$("#datepicker").datepicker("setDate",$scope.fcrForm.formObj.datepicker);
+            $('#datepicker').datepicker();
+            $("#datepicker").datepicker('setDate', new Date($scope.fcrForm.formObj.datepicker))
+
+           /* $('#datepicker').datepicker();
+            $("#datepicker").datepicker("setDate",$scope.fcrForm.formObj.datepicker);*/
+
            // $('#datepicker').datepicker('update', new Date());
             // $('#datepicker').date(new Date(1602908000000));
         });
@@ -107,9 +117,28 @@
     app.directive("autoComplete", function () {
         return {
             restrict: 'AE',
-            link: function ($scope, element, attr) {
+            link: function ($scope, element) {
                 $(element).autocomplete({
-                    source: ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby"],
+                  /*  source: "http://localhost:3001/customers"*/
+
+                    source: function(request, response) {
+                        debugger;
+                        $.getJSON("http://localhost:3001/customers",{query:request.term},response);
+                    }
+                    /*source: function (request,response){
+                        debugger;
+                        $.ajax({
+                            url: "http://localhost:3001/customers" ,      /!*+"?term="+ request.term*!/
+                            type: "GET",
+                          /!*  contentType: "application/json",
+                            dataType: "json",*!/
+                            success:function (res){
+                            },
+                            error:function (err){
+                            },
+                        })
+                    }*/
+                    ,
                     delay: 100,
                     autofocus: true,
                     minLength: 0,
@@ -122,6 +151,25 @@
     });
 
     app.run(function ($httpBackend){
+        let customers = ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby"]
+        /*let customers = [
+            { label: 'C++', value: 'C++' },
+            { label: 'Java', value: 'Java' },
+            { label: 'COBOL', value: 'COBOL' },
+        ]*/
+        let jc = JSON.stringify(customers)
+
+       /* let customers = [
+            {
+                "label": "Labelfor1234",
+                "value": "1234"
+            },
+            {
+                "label": "Labelfor5678",
+                "value": "5678"
+            }
+             ]*/
+
         let formPart = {
             customerValue: "testClient1",
             jobNameValue: "job1",
@@ -130,7 +178,6 @@
             orderValue:"1",
             sapValue: "sap123"
         }
-
         let tablePart = [{
                 name: "Employee1",
                 classification: "cli1",
@@ -167,7 +214,6 @@
                     rate: 2
                 }
             }]
-
         let fcrForm = [
             {
                 formPart: formPart,
@@ -176,7 +222,14 @@
                 prepared: "John Doe",
             },
             ]
+
         $httpBackend.whenGET('http://localhost:3001/forms').respond(200, fcrForm);
+
+      /*  $httpBackend.whenGET('http://localhost:3001/customers?term=c').respond(200, customers);*/
+        $httpBackend.whenGET('http://localhost:3001/customers?term=c').respond(200,jc);
+        $httpBackend.whenGET('http://localhost:3001/customers?term=').respond(200,jc);
+        $httpBackend.whenGET('http://localhost:3001/customers').respond(200,jc);
+
         $httpBackend.whenGET(/\.html$/).passThrough();
     })
 })()

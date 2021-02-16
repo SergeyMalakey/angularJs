@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
           integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw=="
@@ -17,9 +18,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
             integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
             crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+   <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
+            crossorigin="anonymous"></script>-->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
             integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
             crossorigin="anonymous"></script>
@@ -35,7 +37,7 @@
 </head>
 <body ng-app="app" ng-controller="myCtrl">
 <div class="wrapper">
-    <ng-form name="forminputs" class="">
+    <form name="forminputs">
         <div class="form-part">
             <div class="form-part--sign">
                 FCR
@@ -76,71 +78,78 @@
                         <div class="date-input">
                             <label for="datepicker">Date</label>
                             <input placeholder="Thursday, January 14, 2021"
-                                   id="datepicker" data-provide="datepicker"
+                                   id="datepicker"
+                                   data-provide="datepicker-inline"
                                    data-date-format="DD, MM d, yyyy"
                                    ng-model="fcrForm.formObj.dp"
                                    ng-required="true"
-                            >                                   <!--ng-model="fcrForm.formObj.datepicker"-->
+                            >                      <!-- data-provide="datepicker"     -->                  <!--ng-model="fcrForm.formObj.datepicker"-->
                         </div>
                     </div>
             </div>
         </div>
         <div class="table-part">
-            <table border="1px">
-                <tr class="table-sign">
-                    <td colspan="10">Employees</td>
-                </tr>
-                <tr class="table-head">
-                    <th rowspan="2">Name</th>
-                    <th rowspan="2">Classification</th>
-                    <th colspan="3">Normal Time</th>
-                    <th colspan="3">Double time</th>
-                    <th rowspan="2">Per Diem</th>
-                    <th rowspan="2">Total Cost
-                        <div class="rightElInTableHead">
-                            <div ng-click="addEmployee()" class="plusButton">+</div>
-                        </div>
-                    </th>
-                </tr>
-                <tr class="table-head">
-                    <th>Hrs.</th>
-                    <th>Rate</th>
-                    <th>Amount</th>
-                    <th>Hrs.</th>
-                    <th>Rate</th>
-                    <th>Amount</th>
-                </tr>
-                <tr class="oneEmployeeTr" ng-repeat="employee in fcrForm.employees">
-                    <td class=name-column"><input class="align-left" type="text" ng-model="employee.name"></td>
-                    <td><input class="align-left" type="text" ng-model="employee.classification"></td>
-                    <td><input type="number" ng-model="employee.normalTime.hrs"
-                               ng-change="totalCostOneEmployee($index) ; totalAmountNormalTime()" min="0"></td>
-                    <td><input type="number" ng-model="employee.normalTime.rate" ng-change="totalCostOneEmployee($index)"
-                               min="0"></td>
-                    <td>{{employee.normalTime.hrs * employee.normalTime.rate}}</td>
-                    <td><input type="number" ng-model="employee.doubleTime.hrs"
-                               ng-change="totalCostOneEmployee($index) ; totalAmountDoubleTime()" min="0"></td>
-                    <td><input type="number" ng-model="employee.doubleTime.rate" ng-change="totalCostOneEmployee($index)"
-                               min="0"></td>
-                    <td>{{employee.doubleTime.hrs * employee.doubleTime.rate}}</td>
-                    <td><input type="number" ng-change="totalPerdiem($index)" ng-model="employees[$index].perDiem" min="0"
-                               value=0></td>
-                    <td>
-                        <div class="rightElInEmployee">
-                            {{employee.totalCost}}
-                            <div ng-click="delEmployee($index)" class="minusButton">&mdash;</div>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="total-row">
-                    <td colspan="2">Totals:</td>
-                    <td>{{tableObj.normalTimeHrs}}</td>
-                    <td colspan="2"></td>
-                    <td>{{tableObj.doubleTimeHrs}}</td>
-                    <td colspan="2"></td>
-                    <td>{{tableObj.totalPerDiem}}</td>
-                    <td>{{tableObj.totalPrice}}</td>
-                </tr>
+            <table  class="table table-bordered">
+                <thead class="thead-default">
+                    <tr class="table-sign ">
+                        <th colspan="10">Employees</th>
+                    </tr>
+                    <tr class="table-head" >
+                        <th rowspan="2">Name</th>
+                        <th rowspan="2">Classification</th>
+                        <th colspan="3">Normal Time</th>
+                        <th colspan="3">Double time</th>
+                        <th rowspan="2">Per Diem</th>
+                        <th rowspan="2">Total Cost
+                            <div class="rightElInTableHead">
+                                <div ng-click="addEmployee()" class="plusButton">+</div>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr class="table-head">
+                        <th>Hrs.</th>
+                        <th>Rate</th>
+                        <th>Amount</th>
+                        <th>Hrs.</th>
+                        <th>Rate</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr class="oneEmployeeTr" ng-repeat="employee in fcrForm.employees">
+                        <td class=name-column"><input class="align-left" type="text" ng-model="employee.name"></td>
+                        <td><input class="align-left" type="text" ng-model="employee.classification"></td>
+                        <td><input type="number" ng-model="employee.normalTime.hrs"
+                                   ng-change="totalCostOneEmployee($index) ; totalAmountNormalTime()" min="0"></td>
+                        <td><input type="number" ng-model="employee.normalTime.rate" ng-change="totalCostOneEmployee($index)"
+                                   min="0"></td>
+                        <td>{{employee.normalTime.hrs * employee.normalTime.rate}}</td>
+                        <td><input type="number" ng-model="employee.doubleTime.hrs"
+                                   ng-change="totalCostOneEmployee($index) ; totalAmountDoubleTime()" min="0"></td>
+                        <td><input type="number" ng-model="employee.doubleTime.rate" ng-change="totalCostOneEmployee($index)"
+                                   min="0"></td>
+                        <td>{{employee.doubleTime.hrs * employee.doubleTime.rate}}</td>
+                        <td><input type="number" ng-change="totalPerdiem($index)" ng-model="employees[$index].perDiem" min="0"
+                                   value=0></td>
+                        <td>
+                            <div class="rightElInEmployee">
+                                {{employee.totalCost}}
+                                <div ng-click="delEmployee($index)" class="minusButton">&mdash;</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="total-row">
+                        <td colspan="2">Totals:</td>
+                        <td class=>{{tableObj.normalTimeHrs}}</td>
+                        <td colspan="2"></td>
+                        <td>{{tableObj.doubleTimeHrs}}</td>
+                        <td colspan="2"></td>
+                        <td>{{tableObj.totalPerDiem}}</td>
+                        <td>{{tableObj.totalPrice}}</td>
+                    </tr>
+                </tbody>
+
             </table>
             <button ng-click="test()">test</button>
         </div>
@@ -164,7 +173,7 @@
                 </div>
             </div>
         </div>
-    </ng-form>
+    </form>
 </div>
 
 
