@@ -9,31 +9,20 @@
 
     app.controller("myCtrl", function ($scope,$http,ResourceMock) {
 
-        /*$http.get('http://localhost:3001/customers').then(function (res){
-            debugger;
-        })*/
-
+        $scope.httpFunc = $http
 
         $scope.value = "";
-        /*$scope.formObj = {};*/
-
         $scope.tableObj = {
             totalPerDiem: 0
         };
-        $scope.fcrForm = {
-            /*formObj:{
-                datepicker:"Wednesday, February 10, 2021"
-            }*/
-        }
+        $scope.fcrForm = {}
         ResourceMock.query().$promise.then(function (response){
             $scope.fcrForm.employees = response[0].tablePart;
             $scope.fcrForm.comment = response[0].comment;
             $scope.fcrForm.prepared = response[0].prepared;
             $scope.fcrForm.formObj = response[0].formPart
 
-            $('#datepicker').datepicker();
-            $("#datepicker").datepicker('setDate', new Date($scope.fcrForm.formObj.datepicker))
-
+            /*$('#datepicker').datepicker('setDate', new Date($scope.fcrForm.formObj.datepicker))*/
            /* $('#datepicker').datepicker();
             $("#datepicker").datepicker("setDate",$scope.fcrForm.formObj.datepicker);*/
 
@@ -86,9 +75,10 @@
         };
         $scope.initialCompute();  */          //  invocation initial function
 
-        $scope.test = function () {          // testFunc
+        $scope.test = function () {                           // testFunc
             console.log($scope.fcrForm.employees);
             console.log($scope.fcrForm.formObj.datepicker);
+
         };
         /*$scope.delEmployee = function (index) {
             $scope.employees.splice(index, 1);
@@ -114,31 +104,58 @@
         }*/
     });
 
-    app.directive("autoComplete", function () {
+    app.directive("datePicker",function (){
+        return{
+            restrict: "AE",
+            require: 'ngModel',
+            controller: "myCtrl",
+            link: function (scope, element, attrs, ngModelCtrl){
+                $(element).datepicker({
+                    format:"DD, MM d, yyyy"
+                })
+                /*.on("changeDate",function (ev){
+                        debugger;
+                        /!*scope.$apply(function () {
+                            ngModelCtrl.$setViewValue(ev.format(format));
+                        });*!/
+                    })*/
+
+                ngModelCtrl.$parsers.unshift(function (viewValue){
+
+                    if( viewValue!==""){
+                        debugger;
+                        return +new Date(viewValue)
+                    }
+                })
+                ngModelCtrl.$formatters.unshift(function (modelValue){
+                    if(modelValue){
+                        debugger;
+                        element.datepicker('setDate', new Date(Number.parseInt(modelValue)))
+                    }
+
+                })
+            }
+        }
+    })
+
+    app.directive("autoComplete",["$http", function ($scope,$http) {
         return {
+            controller: "myCtrl",
             restrict: 'AE',
             link: function ($scope, element) {
                 $(element).autocomplete({
-                  /*  source: "http://localhost:3001/customers"*/
-
-                    source: function(request, response) {
-                        debugger;
-                        $.getJSON("http://localhost:3001/customers",{query:request.term},response);
-                    }
-                    /*source: function (request,response){
-                        debugger;
-                        $.ajax({
-                            url: "http://localhost:3001/customers" ,      /!*+"?term="+ request.term*!/
-                            type: "GET",
-                          /!*  contentType: "application/json",
-                            dataType: "json",*!/
-                            success:function (res){
-                            },
-                            error:function (err){
-                            },
+                    source:  async function (request,response){
+                        let result =  await $scope.httpFunc(
+                            {
+                                url: 'http://localhost:3001/customers',
+                                method: "POST",
+                                data: request.term,
+                            }
+                        )
+                        .then(function (res){
+                            response (res.data)
                         })
-                    }*/
-                    ,
+                    },
                     delay: 100,
                     autofocus: true,
                     minLength: 0,
@@ -148,28 +165,10 @@
                 });
             }
         }
-    });
+    }]);
 
     app.run(function ($httpBackend){
         let customers = ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby"]
-        /*let customers = [
-            { label: 'C++', value: 'C++' },
-            { label: 'Java', value: 'Java' },
-            { label: 'COBOL', value: 'COBOL' },
-        ]*/
-        let jc = JSON.stringify(customers)
-
-       /* let customers = [
-            {
-                "label": "Labelfor1234",
-                "value": "1234"
-            },
-            {
-                "label": "Labelfor5678",
-                "value": "5678"
-            }
-             ]*/
-
         let formPart = {
             customerValue: "testClient1",
             jobNameValue: "job1",
@@ -222,15 +221,22 @@
                 prepared: "John Doe",
             },
             ]
-
         $httpBackend.whenGET('http://localhost:3001/forms').respond(200, fcrForm);
-
-      /*  $httpBackend.whenGET('http://localhost:3001/customers?term=c').respond(200, customers);*/
-        $httpBackend.whenGET('http://localhost:3001/customers?term=c').respond(200,jc);
-        $httpBackend.whenGET('http://localhost:3001/customers?term=').respond(200,jc);
-        $httpBackend.whenGET('http://localhost:3001/customers').respond(200,jc);
-
+        $httpBackend.whenPOST('http://localhost:3001/customers').respond(function (method,url,data){
+            let filtredValue=[]
+            if (data==="c"){
+                filtredValue = ["all","values","c","request"]
+                return [200, filtredValue, {}]
+            }
+            if (data==="d"){
+                filtredValue = ["all","values","d","request"]
+                return [200, filtredValue, {}]
+            }
+            return [200, customers, {}]
+        })
         $httpBackend.whenGET(/\.html$/).passThrough();
     })
 })()
 
+
+ // customers.indexOf(data) != -1

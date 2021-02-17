@@ -43,7 +43,6 @@
                 FCR
             </div>
             <div class="form-part--inputs">
-
                     <div class="top-side-wrapper">
                         <div class="form-part--inputs left--side">
                             <div class="label-input" id="customerWrapper">
@@ -77,14 +76,26 @@
                     <div class="bottom-part-wrapper">
                         <div class="date-input">
                             <label for="datepicker">Date</label>
-                            <input placeholder="Thursday, January 14, 2021"
+
+                           <!-- <input placeholder="Thursday, January 14, 2021"
                                    id="datepicker"
                                    data-provide="datepicker-inline"
                                    data-date-format="DD, MM d, yyyy"
                                    ng-model="fcrForm.formObj.dp"
                                    ng-required="true"
-                            >                      <!-- data-provide="datepicker"     -->                  <!--ng-model="fcrForm.formObj.datepicker"-->
+                            > -->                     <!-- data-provide="datepicker"     -->                  <!--ng-model="fcrForm.formObj.datepicker"-->
+                            <input type="text"
+                                   id="datepicker"
+                                   ng-required="true"
+                                   autocomplete="off"
+                                   ng-model="fcrForm.formObj.datepicker"
+                                   data-date-format="DD, MM d, yyyy"
+                                   date-picker
+                            >
+                            <span>{{fcrForm.formObj.datepicker}}</span>
+                            <!-- data-provide="datepicker-inline"      data-date-format="DD, MM d, yyyy"-->
                         </div>
+
                     </div>
             </div>
         </div>
